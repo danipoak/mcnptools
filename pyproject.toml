@@ -10,12 +10,14 @@ license = {text = "BSD-3"}
 
 [build-system]
 requires = [
-    "setuptools>=42",
-    "wheel",
-    "cmake>=3.18",
-    "swig>=4.0"
+    "scikit-build-core>=0.3.3",
+    "pybind11",
 ]
-build-backend = "setuptools.build_meta"
+build-backend = "scikit_build_core.build"
+
+[tool.scikit-build]
+cmake.build-type = "Release"
+wheel.packages = ["python/mcnptools"]
 
 [tool.cibuildwheel]
 # This ensures Python 3.11
@@ -26,13 +28,12 @@ CMAKE_ARGS = "-DCMAKE_POLICY_DEFAULT_CMP0167=NEW"
 
 [tool.cibuildwheel.linux]
 manylinux-x86_64-image = "manylinux2014"
+before-all = "yum install -y swig pcre-devel"
 
 [tool.cibuildwheel.windows]
-
+before-all = "choco install -y swig"
 
 [tool.setuptools]
 package-dir = {"" = "python"}
 packages = ["mcnptools"]
 
-[tool.setuptools.package-data]
-"*" = ["*.so", "*.pyd", "*.dll"]
