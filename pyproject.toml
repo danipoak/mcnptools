@@ -28,7 +28,9 @@ CMAKE_ARGS = "-DCMAKE_POLICY_DEFAULT_CMP0167=NEW"
 
 [tool.cibuildwheel.linux]
 manylinux-x86_64-image = "manylinux_2_28"
-before-all = "dnf install -y swig pcre-devel hdf5-devel boost-devel"
+before-all = ["dnf install -y epel-release",
+              "dnf install -y swig pcre-devel hdf5-devel boost-devel zlib-devel"
+              ]
 
 [tool.cibuildwheel.windows]
 before-all = "choco install -y swig hdf5 boost-msvc-14.1"

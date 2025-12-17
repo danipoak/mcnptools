@@ -24,7 +24,9 @@ jobs:
         uses: pypa/cibuildwheel@v2.21.3
         env:
           CIBW_BUILD: "cp311-*"
-          CIBW_BEFORE_ALL_LINUX: "yum install -y swig pcre-devel hdf5-devel boost-devel"
+          CIBW_BEFORE_ALL_LINUX: >
+            "dnf install -y epel-release &&
+            "dnf install -y swig pcre-devel hdf5-devel boost-devel zlib-devel"
           CIBW_ENVIRONMENT: >
             CMAKE_ARGS="-DCMAKE_POLICY_DEFAULT_CMP0167=NEW"
 
