@@ -4,7 +4,7 @@ version = "5.3.1"
 description = "MCNP Tools Python Wheels"
 requires-python = ">=3.11"
 authors = [
-    {name = "Name", email = "email"}
+    {name = "Name", email = "email@example.com"}
 ]
 license = {text = "BSD-3"}  
 
