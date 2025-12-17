@@ -24,7 +24,7 @@ jobs:
         uses: pypa/cibuildwheel@v2.21.3
         env:
           CIBW_BUILD: "cp311-*"
-          # Your specific mcnptools flags
+          CIBW_BEFORE_ALL_LINUX: "yum install -y swig pcre-devel"
           CIBW_ENVIRONMENT: >
             CMAKE_ARGS="-DCMAKE_POLICY_DEFAULT_CMP0167=NEW -Dmcnptools.python_install=User"
 
