@@ -14,12 +14,19 @@ build = "cp311-*"
 
 [tool.cibuildwheel.environment]
 # Moving the CMake flags here keeps your GitHub Action YAML cleaner
-CMAKE_ARGS = "-DCMAKE_POLICY_DEFAULT_CMP0167=NEW -Dmcnptools.python_install=User"
+CMAKE_ARGS = "-DCMAKE_POLICY_DEFAULT_CMP0167=NEW"
 
 [tool.cibuildwheel.linux]
 # Ensure we use a modern enough manylinux for C++11/14/17 support
 manylinux-x86_64-image = "manylinux2014"
 
 [tool.cibuildwheel.windows]
-# On Windows, sometimes SWIG needs to be explicitly pointed to if not in PATH
-# but cibuildwheel usually handles the pip-installed swig automatically.
+
+
+[tool.setuptools]
+package-dir = {"" = "python"
+packages = ["mcnptools"]
+
+[tool.setuptools.package-data]
+# This ensures that any generated .so or .pyd files are included in the wheel
+"*" = ["*.so", "*.pyd", "*.dll"]
