@@ -1,5 +1,14 @@
+[project]
+name = "mcnptools"
+version = "5.3.1" 
+description = "MCNP Tools Python Wheels"
+requires-python = ">=3.11"
+authors = [
+    {name = "Name", email = "email"}
+]
+license = {text = "BSD-3"}  
+
 [build-system]
-# These are required to even start the build process
 requires = [
     "setuptools>=42",
     "wheel",
@@ -9,15 +18,13 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [tool.cibuildwheel]
-# This ensures we only target Python 3.11 as you requested
+# This ensures Python 3.11
 build = "cp311-*"
 
 [tool.cibuildwheel.environment]
-# Moving the CMake flags here keeps your GitHub Action YAML cleaner
 CMAKE_ARGS = "-DCMAKE_POLICY_DEFAULT_CMP0167=NEW"
 
 [tool.cibuildwheel.linux]
-# Ensure we use a modern enough manylinux for C++11/14/17 support
 manylinux-x86_64-image = "manylinux2014"
 
 [tool.cibuildwheel.windows]
@@ -28,5 +35,4 @@ package-dir = {"" = "python"}
 packages = ["mcnptools"]
 
 [tool.setuptools.package-data]
-# This ensures that any generated .so or .pyd files are included in the wheel
 "*" = ["*.so", "*.pyd", "*.dll"]
