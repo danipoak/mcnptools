@@ -28,10 +28,10 @@ CMAKE_ARGS = "-DCMAKE_POLICY_DEFAULT_CMP0167=NEW"
 
 [tool.cibuildwheel.linux]
 manylinux-x86_64-image = "manylinux2014"
-before-all = "yum install -y swig pcre-devel"
+before-all = "yum install -y swig pcre-devel hdf5-devel boost-devel"
 
 [tool.cibuildwheel.windows]
-before-all = "choco install -y swig"
+before-all = "choco install -y swig hdf5 boost"
 
 [tool.setuptools]
 package-dir = {"" = "python"}
