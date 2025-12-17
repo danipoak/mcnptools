@@ -18,13 +18,14 @@ build-backend = "scikit_build_core.build"
 [tool.scikit-build]
 cmake.build-type = "Release"
 wheel.packages = ["python/mcnptools"]
+cmake.args = ["-DPython_FIND_STRATEGY=LOCATION"]
 
 [tool.cibuildwheel]
 # This ensures Python 3.11
 build = "cp311-*"
 
 [tool.cibuildwheel.environment]
-CMAKE_ARGS = "-DCMAKE_POLICY_DEFAULT_CMP0167=NEW"
+CMAKE_ARGS = "-DCMAKE_POLICY_DEFAULT_CMP0167=NEW -DPython_EXECUTABLE=$(which python)"
 
 [tool.cibuildwheel.linux]
 manylinux-x86_64-image = "manylinux_2_28"
