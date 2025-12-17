@@ -31,7 +31,7 @@ manylinux-x86_64-image = "manylinux2014"
 before-all = "yum install -y swig pcre-devel hdf5-devel boost-devel"
 
 [tool.cibuildwheel.windows]
-before-all = "choco install -y swig hdf5 boost"
+before-all = "choco install -y swig hdf5 boost-msvc-14.1"
 
 [tool.setuptools]
 package-dir = {"" = "python"}
