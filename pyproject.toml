@@ -24,7 +24,7 @@ manylinux-x86_64-image = "manylinux2014"
 
 
 [tool.setuptools]
-package-dir = {"" = "python"
+package-dir = {"" = "python"}
 packages = ["mcnptools"]
 
 [tool.setuptools.package-data]
