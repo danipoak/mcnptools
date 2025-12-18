@@ -50,7 +50,7 @@ jobs:
         run: |
           python --version
           Get-Command python | Format-List -Property Source
-          rite-Output "PATH=$
+          Write-Output "PATH=$env:PATH"
 
      
       - name: Build wheels (Linux)
