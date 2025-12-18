@@ -34,14 +34,27 @@ jobs:
           echo "Job attempts: ${{ github.run_attempt }}"
           echo "::debug::Step debug is enabled"
       
-      - name: Print environment snapshot
-        if: ${{ runner.debug == '1' }}
+
+      - name: Print environment snapshot (Linux)
+        if: ${{ runner.debug == '1' && runner.os == 'Linux' }}
+        shell: bash
         run: |
-             python --version
-             where python || which python
-             echo "PATH=$PATH
+          python --version
+          which python
+          echo "PATH=$PATH"
+      
+      # Windows debug step
+      - name: Print environment snapshot (Windows)
+        if: ${{ runner.debug == '1' && runner.os == 'Windows' }}
+        shell: pwsh
+        run: |
+          python --version
+          Get-Command python | Format-List -Property Source
+          rite-Output "PATH=$
+
      
       - name: Build wheels (Linux)
+        if: ${{ runner.os == 'Linux' }}
         uses: pypa/cibuildwheel@v3.3.0
         env:
           CIBW_BUILD: "cp311-*"
