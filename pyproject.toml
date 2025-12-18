@@ -31,6 +31,9 @@ CMAKE_ARGS = "-DCMAKE_POLICY_DEFAULT_CMP0167=NEW -DPython_EXECUTABLE=$(which pyt
 manylinux-x86_64-image = "manylinux_2_28"
 before-all = ["dnf install -y epel-release",
               "dnf install -y swig pcre-devel hdf5-devel boost-devel zlib-devel"
+              "which python"
+              "python --version"
+              "python -c 'import sysconfig; print(sysconfig.get_path(\"include\"))'"
               ]
 
 [tool.cibuildwheel.windows]

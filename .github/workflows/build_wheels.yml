@@ -28,7 +28,7 @@ jobs:
             dnf install -y epel-release &&
             dnf install -y swig pcre-devel hdf5-devel boost-devel zlib-devel
           CIBW_ENVIRONMENT: >
-            CMAKE_ARGS="-DCMAKE_POLICY_DEFAULT_CMP0167=NEW -DPython_EXECUTABLE=$(which python)"
+            CMAKE_ARGS="-DCMAKE_POLICY_DEFAULT_CMP0167=NEW -DPython_EXECUTABLE=$(which python) -DPYTHON_EXECUTABLE=$(which python) -DPython_ROOT_DIR=$(python -c 'import sys; print(sys.prefix)')"
 
       - uses: actions/upload-artifact@v4
         with:
