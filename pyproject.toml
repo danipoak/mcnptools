@@ -33,12 +33,7 @@ build = "cp311-*"
 
 [tool.cibuildwheel.linux]
 manylinux-x86_64-image = "manylinux_2_28"
-before-all = ["dnf install -y epel-release",
-              "dnf install -y swig pcre-devel hdf5-devel boost-devel zlib-devel",
-              "which python",
-              "python --version",
-              "python -c 'import sysconfig; print(sysconfig.get_path(\"include\"))'"
-              ]
+before-all = [apt-get update -y && DEBIAN_FRONTEND=noninteractive apt-get install -y swig libpcre3-dev libhdf5-dev libboost-dev zlib1g-dev]
 
 [tool.cibuildwheel.windows]
 before-all = "choco install -y swig hdf5 boost-msvc-14.1"
