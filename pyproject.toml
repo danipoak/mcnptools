@@ -23,6 +23,7 @@ cmake.args = [
     "-DPython_FIND_STRATEGY=LOCATION",
     "-DPython_FIND_IMPLEMENTATIONS=CPython",
     "-DPython_FIND_REGISTRY=NEVER"
+    "-DPYBIND11_FINDPYTHON=ON"
 ]
 
 [tool.cibuildwheel]
@@ -40,8 +41,3 @@ before-all = ["dnf install -y epel-release",
 
 [tool.cibuildwheel.windows]
 before-all = "choco install -y swig hdf5 boost-msvc-14.1"
-
-[tool.setuptools]
-package-dir = {"" = "python"}
-packages = ["mcnptools"]
-
