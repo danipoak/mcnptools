@@ -19,12 +19,6 @@ build-backend = "scikit_build_core.build"
 cmake.build-type = "Release"
 wheel.packages = ["python/mcnptools"]
 cmake.args = ["-DPython_FIND_STRATEGY=LOCATION"]
-
-[tool.cibuildwheel]
-# This ensures Python 3.11
-build = "cp311-*"
-
-[tool.cibuildwheel.environment]
 cmake.args = [
     "-DCMAKE_POLICY_DEFAULT_CMP0167=NEW",
     "-DPython_FIND_STRATEGY=LOCATION",
@@ -32,12 +26,16 @@ cmake.args = [
     "-DPython_FIND_REGISTRY=NEVER"
 ]
 
+[tool.cibuildwheel]
+# This ensures Python 3.11
+build = "cp311-*"
+
 [tool.cibuildwheel.linux]
 manylinux-x86_64-image = "manylinux_2_28"
 before-all = ["dnf install -y epel-release",
-              "dnf install -y swig pcre-devel hdf5-devel boost-devel zlib-devel"
-              "which python"
-              "python --version"
+              "dnf install -y swig pcre-devel hdf5-devel boost-devel zlib-devel",
+              "which python",
+              "python --version",
               "python -c 'import sysconfig; print(sysconfig.get_path(\"include\"))'"
               ]
 
