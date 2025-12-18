@@ -24,6 +24,7 @@ cmake.args = [
     "-DPython_FIND_IMPLEMENTATIONS=CPython",
     "-DPython_FIND_REGISTRY=NEVER"
     "-DPYBIND11_FINDPYTHON=ON"
+    "-DBUILD_TESTING=OFF"
 ]
 
 [tool.cibuildwheel]
