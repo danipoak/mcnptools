@@ -24,6 +24,23 @@ jobs:
         with:
           python-version: '3.12'
 
+
+      - name: Dump GitHub runner context (debug)
+        if: ${{ runner.debug == '1' }}
+        run: |
+          echo "Event: ${{ github.event_name }}"
+          echo "Runner OS: ${{ runner.os }}"
+          echo "Runner Arch: ${{ runner.arch }}"
+          echo "Job attempts: ${{ github.run_attempt }}"
+          echo "::debug::Step debug is enabled"
+      
+      - name: Print environment snapshot
+        if: ${{ runner.debug == '1' }}
+        run: |
+             python --version
+             where python || which python
+             echo "PATH=$PATH
+     
       - name: Build wheels (Linux)
         uses: pypa/cibuildwheel@v3.3.0
         env:
