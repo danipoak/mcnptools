@@ -4,7 +4,7 @@ configure_file(
   @ONLY
 )
 
-find_package(Python COMPONENTS Development Interpreter REQUIRED)
+find_package(Python 3.11 EXACT COMPONENTS Interpreter Development.Module REQUIRED)
 
 Python_add_library(_mcnptools_wrap mcnptools_wrap.cpp)
 
