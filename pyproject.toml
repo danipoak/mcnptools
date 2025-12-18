@@ -18,7 +18,6 @@ build-backend = "scikit_build_core.build"
 [tool.scikit-build]
 cmake.build-type = "Release"
 wheel.packages = ["python/mcnptools"]
-cmake.args = ["-DPython_FIND_STRATEGY=LOCATION"]
 cmake.args = [
     "-DCMAKE_POLICY_DEFAULT_CMP0167=NEW",
     "-DPython_FIND_STRATEGY=LOCATION",
