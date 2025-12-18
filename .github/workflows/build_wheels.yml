@@ -59,8 +59,9 @@ jobs:
         env:
           CIBW_BUILD: "cp311-*"
           CIBW_BEFORE_ALL_LINUX: >
-            dnf install -y epel-release &&
-            dnf install -y swig pcre-devel hdf5-devel boost-devel zlib-devel
+            apt-get update -y &&
+            DEBIAN_FRONTEND=noninteractive apt-get install -y \
+              swig libpcre3-dev libhdf5-dev libboost-dev zlib1g-dev
           
           CIBW_ENVIRONMENT: >
             CMAKE_ARGS="-DBUILD_TESTING=OFF
