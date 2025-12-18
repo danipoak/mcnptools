@@ -25,7 +25,12 @@ cmake.args = ["-DPython_FIND_STRATEGY=LOCATION"]
 build = "cp311-*"
 
 [tool.cibuildwheel.environment]
-CMAKE_ARGS = "-DCMAKE_POLICY_DEFAULT_CMP0167=NEW -DPython_EXECUTABLE=$(which python)"
+cmake.args = [
+    "-DCMAKE_POLICY_DEFAULT_CMP0167=NEW",
+    "-DPython_FIND_STRATEGY=LOCATION",
+    "-DPython_FIND_IMPLEMENTATIONS=CPython",
+    "-DPython_FIND_REGISTRY=NEVER"
+]
 
 [tool.cibuildwheel.linux]
 manylinux-x86_64-image = "manylinux_2_28"
