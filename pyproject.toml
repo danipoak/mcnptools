@@ -15,29 +15,18 @@ requires = [
 ]
 build-backend = "scikit_build_core.build"
 
-[tool.scikit-build]
-cmake.build-type = "Release"
-wheel.packages = ["python/mcnptools"]
-cmake.args = [
-    "-DCMAKE_POLICY_DEFAULT_CMP0167=NEW",
-    "-DPython_FIND_STRATEGY=LOCATION",
-    "-DPython_FIND_IMPLEMENTATIONS=CPython",
-    "-DPython_FIND_REGISTRY=NEVER",
-    "-DPYBIND11_FINDPYTHON=ON",
-    "-DBUILD_TESTING=OFF"
-]
 
 [tool.cibuildwheel]
-# This ensures Python 3.11
+# Build only CPython 3.11 wheels
 build = "cp311-*"
 
 [tool.cibuildwheel.linux]
-manymanylinux-x86_64-image = "manylinux_2_35"
+manylinux-x86_64-image = "manylinux_2_35"
 before-all = """
 apt-get update -y &&
 DEBIAN_FRONTEND=noninteractive apt-get install -y \
   swig libpcre3-dev libhdf5-dev libboost-dev zlib1g-dev
-
+"""
 
 [tool.cibuildwheel.windows]
-before-all = "choco install -y swig hdf5 boost-msvc-14.1"
+before-all = "choco install -y swig hdf5 boost-msvc-14.3"
